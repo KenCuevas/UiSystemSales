@@ -1,0 +1,34 @@
+
+
+.logo_ctn{
+    width: 100%;
+}
+.logo{
+    width: 25px;
+}
+.logo_text{
+    font-weight: bold;
+    padding-left: 5px;
+    color: #7d64f4;
+}
+.logo_text_p{
+    color: #808085;
+}
+.login_icon{
+    height: 15px;
+    filter: invert(58%) sepia(6%) saturate(71%) hue-rotate(201deg) brightness(96%) contrast(85%);
+}
+.login_text{
+    color: #8d8d8f;
+    margin-left: 5px;
+}
+.login:hover{
+    cursor: pointer;
+}
+.login:hover .login_icon{
+    filter: invert(56%) sepia(74%) saturate(2176%) hue-rotate(214deg) brightness(102%) contrast(94%);
+}
+.login:hover .login_text{
+    color: #9b88f8;
+    font-weight: bold;
+}
