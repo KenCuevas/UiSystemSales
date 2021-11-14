@@ -7,8 +7,8 @@ export function GetDepartaments(){
       return  res.data
     })
 }
-export function EditDepartaments(id){
-     return axios.get(apiURL + "/update/"+id).then(res =>res.data)
+export function EditDepartaments(){
+     return axios.get(apiURL + "/all").then(res =>res.data)
 }
 
 export function DeleteDepartaments(id){

@@ -53,9 +53,9 @@ export default function Deparment() {
 	}
 	const addDep=(e)=>{
 		e.preventDefault()
-		let bool = false
+		let bool=true
 		if(estado.current.isCheked){
-			bool=true
+			bool=false
 		}
 		if(name !==""){
 			let json ={"nombre":name.current.value, "estado":bool}
@@ -75,16 +75,31 @@ export default function Deparment() {
 <div className="modal fade" id="modalArti" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div className="modal-dialog">
     <div className="modal-content">
-      <div className="modal-header">
-        <h5 className="modal-title" id="exampleModalLabel">Modal title</h5>
+	<form onSubmit={addDep} id="department-form">
+		 <div className="modal-header">
+        <h5 className="modal-title" id="exampleModalLabel">Editar departamento</h5>
         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div className="modal-body">
-        ...
+	  
+  <div className="mb-3">
+    <label htmlFor="exampleInputEmail1" className="form-label">Nombre</label>
+    <input type="text" className="form-control" ref={name}/>
+  </div>
+  <div className="form-check form-switch">
+	  
+		<label className="form-check-label" htmlFor="flexSwitchCheckChecked">Estado</label>
+		<input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" ref={estado}/>
+	</div>
+
       </div>
       <div className="modal-footer">
-        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+	  <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <button type="button" className="btn btn-primary">Save changes</button>
+      </div>
+	 
+	  </form>
+      <div className="modal-body">
       </div>
     </div>
   </div>
@@ -94,7 +109,7 @@ export default function Deparment() {
 <div className="modal fade" id="modalArtiAdd" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div className="modal-dialog">
     <div className="modal-content">
-     <form onSubmit={addDep}>
+     <form onSubmit={addDep} id="department-form">
 		 <div className="modal-header">
         <h5 className="modal-title" id="exampleModalLabel">Agregar departamento</h5>
         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -118,6 +133,7 @@ export default function Deparment() {
       </div>
 	 
 	  </form>
+	  
     </div>
   </div>
 </div>
@@ -139,6 +155,7 @@ export default function Deparment() {
 					</tr>
 			</thead>
 			<tbody>
+				
 			{
 					Object.keys(PROVIDER).map(ele=>{
 					return <tr key={"prov_"+PROVIDER[ele].id}>
@@ -164,7 +181,8 @@ export default function Deparment() {
 			}
 			</tbody>
 			</table>
-			</div>
+			{/*{document.getElementById('department-form').reset()}*/}
+			</div>		
 		</>
 	);
 }
