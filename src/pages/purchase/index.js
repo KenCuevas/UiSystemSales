@@ -3,6 +3,7 @@ import Bradcrumb from "components/Breadcrumb";
 export default function Purchases(){
 
     return(
+        
         <>
         <Bradcrumb 
         text="Solicitudes de compras"

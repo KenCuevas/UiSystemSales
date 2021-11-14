@@ -135,7 +135,7 @@ export default function Medidas() {
 			<thead>
 					<tr>
 					<th scope="col">ID</th>
-					<th scope="col">Tipo</th>
+					<th scope="col" >Tipo</th>
 					<th scope="col">Estado</th>
 					<th scope="col">Editar</th>
 					<th scope="col">Eliminar</th>
