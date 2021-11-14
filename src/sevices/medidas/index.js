@@ -17,3 +17,11 @@ export function DeleteMedidas(id){
   return axios.delete(apiURL + "/delete/"+id).then(res =>res.data)
 
 }
+
+export function AddMedidas(json){
+  console.log(json)
+  return axios({
+    method: 'post',
+    url: `${apiURL}/add`,
+    data: json}).then(res => res.data)
+}

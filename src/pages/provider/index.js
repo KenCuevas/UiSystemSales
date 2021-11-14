@@ -128,7 +128,7 @@ export default function Providers() {
 		<Bradcrumb 
         text="Proveedor"/>
 
-<button type="button" className="btn btn-primary">Agregar nuevo proveedor</button>
+<button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalArtiAdd">Agregar nuevo proveedor</button>
 	
     <div>
 			<table className="table table-hover bg-white shadow-sm mt-3">

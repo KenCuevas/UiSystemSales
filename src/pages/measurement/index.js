@@ -4,9 +4,9 @@ import FindImg from "components/getImages/findImg";
 import '../../App.css';
 import { useRef , useState, useEffect} from "react";
 import Swal from 'sweetalert2';
-import { GetMedidas, DeleteMedidas } from "sevices/medidas";
+import { GetMedidas, DeleteMedidas, AddMedidas } from "sevices/medidas";
 
-function Medidas() {
+export default function Medidas() {
 	const med = AllMedidas()
     const [MEDIDAS, setMEDIDAS]= useState("")
 
@@ -16,6 +16,10 @@ function Medidas() {
 
 
 	let button = useRef(null);
+	let descripcion = useRef(null);
+	let estado = useRef(null);
+	let cerrar = useRef(null);
+
 	const deleteElement=(e, id)=>{
 		console.log(id)
 		Swal.fire({
@@ -48,11 +52,28 @@ function Medidas() {
 		console.log(id)
 		button.current.click()
 	}
+	const AddMed=(e)=>{
+		e.preventDefault()
+		let bool = false
+		if(estado.current.isCheked){
+			bool=true
+		}
+		if(descripcion !==""){
+			let json ={"descripcion":descripcion.current.value, "estado":bool}	
+			AddMedidas(json).then(res =>{
+				GetMedidas().then(res =>{
+					setMEDIDAS(res)
+				})
+				cerrar.current.click()
+			})
+		}
+	}
 	return ( 
 		<>
 <button hidden type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalMedida" ref={button}>
   Launch demo modal
 </button>
+
 
 <div className="modal fade" id="modalMedida" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div className="modal-dialog">
@@ -72,10 +93,42 @@ function Medidas() {
   </div>
 </div>
 
+{/* Add med */}
+<div className="modal fade" id="modalMedAdd" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div className="modal-dialog">
+    <div className="modal-content">
+     <form onSubmit={AddMed}>
+		 <div className="modal-header">
+        <h5 className="modal-title" id="exampleModalLabel">Agregar Medida</h5>
+        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div className="modal-body">
+	  
+  <div className="mb-3">
+    <label htmlFor="exampleInputEmail1" className="form-label">Tipo</label>
+    <input type="text" className="form-control" ref={descripcion}/>
+  </div>
+  <div className="form-check form-switch">
+	  
+		<label className="form-check-label" htmlFor="flexSwitchCheckChecked">Estado</label>
+		<input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" ref={estado}/>
+	</div>
+
+      </div>
+      <div className="modal-footer">
+        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" ref={cerrar} >Cerrar</button>
+        <button type="submit" className="btn btn-primary">Agregar Medida</button>
+      </div>
+	 
+	  </form>
+    </div>
+  </div>
+</div>
+
 		<Bradcrumb 
         text="Medidas"/>
 
-<button type="button" className="btn btn-primary">Agregar nueva medida</button>
+<button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalMedAdd" >Agregar nueva medida</button>
 	
     <div>
 			<table className="table table-hover bg-white shadow-sm mt-3">
@@ -118,5 +171,3 @@ function Medidas() {
 		</>
 	);
 }
-
-export default Medidas;
